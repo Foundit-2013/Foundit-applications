@@ -1,5 +1,5 @@
-class Post < ActiveRecord::Base
-  attr_accessible :password, :name, :email, :birthday
+class User < ActiveRecord::Base
+  attr_accessible :password, :name, :email
   
   validates :name,  :presence => true
   validates :password, :presence => true,
