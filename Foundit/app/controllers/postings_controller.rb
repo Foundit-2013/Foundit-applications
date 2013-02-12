@@ -5,7 +5,8 @@ class PostingsController < ApplicationController
     @postings = Posting.all
 
     respond_to do |format|
-      format.json { render json: @postings }
+      format.json { render json: @postings, :content_type => 'application/json'}
+      #format.xml  { render :xml => @postings }
       format.html # index.html.erb
     end
   end
