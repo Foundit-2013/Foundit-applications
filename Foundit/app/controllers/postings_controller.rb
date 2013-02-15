@@ -3,6 +3,8 @@ class PostingsController < ApplicationController
   # GET /postings.json
   def index
     @postings = Posting.all
+    
+    #@postings = Posting.find(:all, :order => "name")
 
     respond_to do |format|
       format.json { render json: @postings, :content_type => 'application/json'}
@@ -21,7 +23,31 @@ class PostingsController < ApplicationController
       format.html # show.html.erb
     end
   end
+  
+  # GET /postings_show_lost
+  # GET /postings_show_lost.json
+  def show_lost
+    #@posting = Posting.find(params[:id])
+    @postings = Posting.where('posting_type == 1')
 
+    respond_to do |format|
+      format.json { render json: @postings }
+      format.html { render action: "show_lost" }
+    end
+  end
+  
+  # GET /postings_show_found
+  # GET /postings_show_found.json
+  def show_found
+    #@posting = Posting.find(params[:id])
+    @postings = Posting.where('posting_type == 2')
+
+    respond_to do |format|
+      format.json { render json: @postings }
+      format.html { render action: "show_found" }
+    end
+  end
+  
   # GET /postings/new
   # GET /postings/new.json
   def new
@@ -73,6 +99,19 @@ class PostingsController < ApplicationController
   # DELETE /postings/1
   # DELETE /postings/1.json
   def destroy
+    @posting = Posting.find(params[:id])
+    #@Posting = Posting.where(name: params[:name])
+    @posting.destroy
+
+    respond_to do |format|
+      format.json { head :no_content }
+      format.html { redirect_to postings_url }
+    end
+  end
+  
+  # DELETE /postings/1
+  # DELETE /postings/1.json
+  def test
     @posting = Posting.find(params[:id])
     #@Posting = Posting.where(name: params[:name])
     @posting.destroy

@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20130131182046) do
     t.string   "name"
     t.text     "description"
     t.string   "image"
+    t.string   "image_thumb"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

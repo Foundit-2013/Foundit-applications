@@ -22,7 +22,9 @@ Type = 2 = Found
     <th></th>
   </tr>
 
-<% @postings.each do |posting| %>
+<% 
+@postings = Posting.where('posting_type == 2')
+@postings.each do |posting| %>
   <tr>
   	<td><%= posting.id %></td>
   	<td><%= posting.posting_type %></td>
