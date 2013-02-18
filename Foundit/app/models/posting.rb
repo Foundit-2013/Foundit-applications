@@ -12,6 +12,16 @@ class Posting < ActiveRecord::Base
   #:path => ":rails_root/images"
   :path => ":rails_root/public/system/:class/:attachment/:id_partition/:style/:filename"
   
+  def photo_url_large
+    photo.url(:large)
+    #photo.path(:large)
+  end
+  
+  def photo_url_thumb
+    photo.url(:thumb)
+    #photo.path(:thumb)
+  end
+  
   validates :name,  :presence => true, :length => { :in => 3..20 }
   validates :description, :presence => true, :length => { :minimum => 10 }
   validates :posting_type,  :presence => true

@@ -7,7 +7,10 @@ class PostingsController < ApplicationController
     #@postings = Posting.find(:all, :order => "name")
 
     respond_to do |format|
-      format.json { render json: @postings, :content_type => 'application/json'}
+      #format.json { render json: @postings, :content_type => 'application/json'}
+      #format.json  { render :json => @things.to_json(:include => { :photos => { :only => [:id, :url] } }) }
+      format.json { render :json => @postings.to_json(:methods => [:photo_url_thumb, :photo_url_large]), :content_type => 'application/json'}
+      #@postings.to_json(:only => [:id,:name,:description,:posting_type], :methods => [:photo_url])
       #format.xml  { render :xml => @postings }
       format.html # index.html.erb
     end
@@ -19,7 +22,8 @@ class PostingsController < ApplicationController
     @posting = Posting.find(params[:id])
 
     respond_to do |format|
-      format.json { render json: @posting }
+      format.json { render :json => @posting.to_json(:methods => [:photo_url_thumb, :photo_url_large]), :content_type => 'application/json'}
+      #format.json { render json: @posting }
       format.html # show.html.erb
     end
   end
@@ -31,7 +35,8 @@ class PostingsController < ApplicationController
     @postings = Posting.where('posting_type == 1')
 
     respond_to do |format|
-      format.json { render json: @postings }
+      format.json { render :json => @postings.to_json(:methods => [:photo_url_thumb, :photo_url_large]), :content_type => 'application/json'}
+      #format.json { render json: @postings }
       format.html { render action: "show_lost" }
     end
   end
@@ -43,7 +48,8 @@ class PostingsController < ApplicationController
     @postings = Posting.where('posting_type == 2')
 
     respond_to do |format|
-      format.json { render json: @postings }
+      format.json { render :json => @postings.to_json(:methods => [:photo_url_thumb, :photo_url_large]), :content_type => 'application/json'}
+      #format.json { render json: @postings }
       format.html { render action: "show_found" }
     end
   end
