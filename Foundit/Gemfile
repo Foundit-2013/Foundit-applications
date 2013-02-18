@@ -22,6 +22,11 @@ end
 
 gem 'jquery-rails'
 
+# paperclip for images
+gem 'paperclip'
+
+gem 'cocaine', '0.3.2'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

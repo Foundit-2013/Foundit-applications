@@ -21,15 +21,33 @@
   <%= @posting.description %>
 </p>
 
+<%
+=begin %>
 <p>
   <b>Image:</b>
   <%= image_tag(@posting.image) %>
 </p>
+<%
+=end %>
 
+<p>
+  <b>Image:</b>
+  <%= image_tag(@posting.photo.url(:large)) %>
+</p>
+
+<p>
+  <b>Image Thumbnail:</b>
+  <%= image_tag(@posting.photo.url(:thumb)) %>
+</p>
+
+<%
+=begin %>
 <p>
   <b>Image Thumbnail:</b>
   <%= image_tag(@posting.image_thumb) %>
 </p>
+<%
+=end %>
 
 <p>
   <b>Created At:</b>

@@ -3,6 +3,10 @@
 <br />
 <%= link_to 'New Posting', new_posting_path %>
 <br /><br />
+<%= link_to 'Show All', postings_path %><br />
+<%= link_to 'Sort by Lost', :controller => "postings", :action => "show_lost" %><br />
+<%= link_to 'Sort by Found', :controller => "postings", :action => "show_found"  %>
+<br /><br />
 Type = 1 = Lost<br />
 Type = 2 = Found
 <br /><br />
@@ -28,8 +32,8 @@ Type = 2 = Found
   	<td><%= posting.posting_type %></td>
     <td><%= posting.name %></td>
     <td><%= posting.description %></td>
-    <td><%= image_tag(posting.image) %></td>
-    <td><%= image_tag(posting.image_thumb) %></td>
+    <td><%= image_tag(posting.photo.url(:large)) %></td>
+    <td><%= image_tag(posting.photo.url(:thumb)) %></td>
     <td><%= posting.created_at %></td>
     <td><%= posting.updated_at %></td>
     <td><%= link_to 'Show', posting %></td>

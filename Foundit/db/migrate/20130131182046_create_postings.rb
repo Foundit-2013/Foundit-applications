@@ -4,9 +4,7 @@ class CreatePostings < ActiveRecord::Migration
       t.text :posting_type
       t.string :name
       t.text :description
-      t.string :image
-      t.string :image_thumb
-
+      
       t.timestamps
     end
   end
