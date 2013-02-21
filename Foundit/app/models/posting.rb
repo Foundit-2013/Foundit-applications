@@ -5,6 +5,8 @@ class Posting < ActiveRecord::Base
     !(asset_content_type =~ /^image.*/).nil?
   end
   
+  attr_accessible :id, :created_at, :updated_at, :photo_file_name, :photo_content_type, :photo_file_size, :photo_updated_at
+  
   attr_accessible :photo
   has_attached_file :photo,
   :styles => { :large => "300x300>", :thumb => "60x60>" }, 
@@ -22,8 +24,8 @@ class Posting < ActiveRecord::Base
     #photo.path(:thumb)
   end
   
-  validates :name,  :presence => true, :length => { :in => 3..20 }
+  validates :name, :presence => true, :length => { :in => 3..20 }
   validates :description, :presence => true, :length => { :minimum => 10 }
-  validates :posting_type,  :presence => true
+  validates :posting_type, :presence => true
 
 end
