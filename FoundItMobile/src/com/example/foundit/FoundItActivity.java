@@ -20,10 +20,12 @@ import org.json.JSONObject;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -57,8 +59,14 @@ public class FoundItActivity extends Activity {
 		InfoTask info = new InfoTask();
 		info.execute();
 	}
+	//called to launch camera application
+	public void uploadPhoto(View view){
+		//this is how to handle the photo upload
+		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(takePictureIntent, 0);
+	}
 	
-	private class InfoTask extends AsyncTask<Void, Void, String[]> {
+private class InfoTask extends AsyncTask<Void, Void, String[]> {
 		ProgressDialog progress;
 		Boolean uploadSuccessful = false;
 		@Override 

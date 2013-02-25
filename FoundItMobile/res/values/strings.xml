@@ -14,5 +14,6 @@
     <string name="uploadButton">Upload</string>
     <string name="nameField">Name</string>
     <string name="descriptionField">Description</string>
+    <string name="button_UploadPhoto">UploadPhoto</string>
 
 </resources>
