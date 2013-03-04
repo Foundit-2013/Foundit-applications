@@ -1,14 +1,14 @@
 package com.example.foundit;
 
-import android.os.Bundle;
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
+@SuppressWarnings("deprecation")
 public class ListTabberActivity extends TabActivity {
 	 private static final String FOUND_SPEC = "Found";
 	 private static final String LOST_SPEC = "Lost";

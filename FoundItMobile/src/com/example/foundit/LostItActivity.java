@@ -25,7 +25,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
-public class FoundItActivity extends Activity {
+public class LostItActivity extends Activity {
 
 	EditText nameField;
 	EditText descField;
@@ -71,7 +71,7 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
 	    	 	else {
 	    	 		message = "Your upload failed :(";
 	    	 	}
-    	 		AlertDialog.Builder builder = new AlertDialog.Builder(FoundItActivity.this);
+    	 		AlertDialog.Builder builder = new AlertDialog.Builder(LostItActivity.this);
     	 		builder.setMessage(message);
     	 		builder.setCancelable(false);
     	 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -85,7 +85,7 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
          }
 	     @Override
          protected void onPreExecute() {
-	    	 progress = ProgressDialog.show(FoundItActivity.this, "","Loading...");
+	    	 progress = ProgressDialog.show(LostItActivity.this, "","Loading...");
          }
 		@Override
 		protected String[] doInBackground(Void... params) {
@@ -100,7 +100,7 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
 		    HttpPost post = new HttpPost("http://foundit.andrewl.ca/postings");
 		    try {
 		      List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-		      nameValuePairs.add(new BasicNameValuePair("posting[posting_type]", "2"));
+		      nameValuePairs.add(new BasicNameValuePair("posting[posting_type]", "1"));
 		      nameValuePairs.add(new BasicNameValuePair("posting[name]", name));
 		      nameValuePairs.add(new BasicNameValuePair("posting[description]", description)); 
 		      nameValuePairs.add(new BasicNameValuePair("posting[image]", "imgur.com"));

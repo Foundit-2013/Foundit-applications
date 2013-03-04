@@ -1,15 +1,11 @@
 package com.example.foundit;
 
-import com.example.foundit.AllListActivity;
-
-
-import android.os.Bundle;
-import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
@@ -41,6 +37,11 @@ public class MainActivity extends Activity {
 	
 	public void foundIt(View view){
 		Intent intent = new Intent(this, FoundItActivity.class);
+		startActivity(intent);
+	}
+	
+	public void lostIt(View view){
+		Intent intent = new Intent(this, LostItActivity.class);
 		startActivity(intent);
 	}
 

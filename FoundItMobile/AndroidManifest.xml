@@ -50,6 +50,10 @@
             android:name="com.example.foundit.LostListActivity"
             android:label="@string/title_activity_lost_list" >
         </activity>
+        <activity
+            android:name="com.example.foundit.LostItActivity"
+            android:label="@string/title_activity_lost_it" >
+        </activity>
     </application>
 
 </manifest>

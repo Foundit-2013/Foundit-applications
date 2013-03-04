@@ -1,7 +1,6 @@
 package com.example.foundit;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -17,17 +16,14 @@ import org.apache.http.protocol.HttpContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.Environment;
-import android.os.Parcel;
-import android.app.Activity;
+
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -134,19 +130,8 @@ public class LostListActivity extends ListActivity {
 			return list;
 		}
 	 }
-	
-	
-	
-	
-	
-	
-	
-	///////
-	
+
 	public JSONArray getJSONList(){
-		//get shit form shaun
-		JSONParser parser = new JSONParser();
-		File sdcard = Environment.getExternalStorageDirectory();
 		JSONArray jsonArray = null;
 		///////////////////////////////
 		HttpClient httpClient = new DefaultHttpClient();
@@ -167,16 +152,11 @@ public class LostListActivity extends ListActivity {
 			while ((line = reader.readLine()) != null)
 			{
 				 sb.append(line + "\n");
-			    //finalString += line;
 			}
-			//line.charAt(2);
-			//String result = sb.toString();
+
 			finalString = sb.toString();
 			jsonArray = new JSONArray(finalString);
-			for(int i =0; i < jsonArray.length(); i++)
-			{
-				JSONObject jsonObject = jsonArray.getJSONObject(i);			
-			}
+			
 		} catch (ClientProtocolException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
