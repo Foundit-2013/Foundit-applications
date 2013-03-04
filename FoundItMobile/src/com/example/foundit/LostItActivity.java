@@ -103,7 +103,6 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
 		      nameValuePairs.add(new BasicNameValuePair("posting[posting_type]", "1"));
 		      nameValuePairs.add(new BasicNameValuePair("posting[name]", name));
 		      nameValuePairs.add(new BasicNameValuePair("posting[description]", description)); 
-		      nameValuePairs.add(new BasicNameValuePair("posting[image]", "imgur.com"));
 		      post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 		 
 		      HttpResponse response = client.execute(post);
