@@ -108,7 +108,7 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
 		    HttpPost post = new HttpPost("http://foundit.andrewl.ca/postings");
 		    try {
 		      List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-		      nameValuePairs.add(new BasicNameValuePair("posting[posting_type]", "1"));
+		      nameValuePairs.add(new BasicNameValuePair("posting[posting_type]", "2"));
 		      nameValuePairs.add(new BasicNameValuePair("posting[name]", name));
 		      nameValuePairs.add(new BasicNameValuePair("posting[description]", description)); 
 		      nameValuePairs.add(new BasicNameValuePair("posting[image]", "imgur.com"));
@@ -116,6 +116,7 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
 		 
 		      HttpResponse response = client.execute(post);
 		     String monekey= response.getStatusLine().getStatusCode() + "";
+		     String stats = response.getStatusLine().getStatusCode() + "";
 		      if (response.getStatusLine().getStatusCode()  == 200) {
 		    	  uploadSuccessful = true;
 		      }

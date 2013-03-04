@@ -34,7 +34,8 @@ public class MainActivity extends Activity {
 	}
 	public void listIt(View view){
 		
-		Intent intent = new Intent(this, AllListActivity.class);
+		//Intent intent = new Intent(this, AllListActivity.class);
+		Intent intent = new Intent(this, ListTabberActivity.class);
 		startActivity(intent);
 	}
 	

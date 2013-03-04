@@ -30,6 +30,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TabHost;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -57,8 +58,8 @@ public class AllListActivity extends ListActivity implements Parcelable {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ActionBar actionBar = getActionBar();
-		actionBar.setIcon(R.drawable.foundit4);
+	//	ActionBar actionBar = getActionBar();
+	//	actionBar.setIcon(R.drawable.foundit4);
 		InfoTask info = new InfoTask();
 		info.execute();
 
@@ -116,6 +117,7 @@ public class AllListActivity extends ListActivity implements Parcelable {
 	    	 	String[] List = result;
 		    	setListAdapter(new ArrayAdapter<String>(AllListActivity.this, R.layout.activity_all_list,List));
 		    	ListView listView = getListView();
+		    	
 				listView.setTextFilterEnabled(true);
 	    	 	}
          }
@@ -167,7 +169,8 @@ public class AllListActivity extends ListActivity implements Parcelable {
 		///////////////////////////////
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpContext localContext = new BasicHttpContext();
-		HttpGet httpGet = new HttpGet("http://foundit.andrewl.ca/postings.json");
+		//HttpGet httpGet = new HttpGet("http://foundit.andrewl.ca/postings.json");
+		HttpGet httpGet = new HttpGet("http://foundit.andrewl.ca/postings_show_found.json");
 		HttpResponse response;
 		try {
 			response = httpClient.execute(httpGet, localContext);
