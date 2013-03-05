@@ -1,32 +1,38 @@
 package com.example.foundit;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
-public class FoundItActivity extends Activity {
 
+
+
+public class FoundItActivity extends Activity {
+	File f;
+	Boolean tookPhoto = false;
 	EditText nameField;
 	EditText descField;
 	@Override
@@ -53,10 +59,28 @@ public class FoundItActivity extends Activity {
 	}
 	//called to launch camera application
 	public void uploadPhoto(View view){
+		Uri imgUri = null;
 		//this is how to handle the photo upload
+		try {
+			
+			f = File.createTempFile("tmp", ".jpg", Environment.getExternalStorageDirectory());
+			imgUri = Uri.fromFile(f);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		startActivityForResult(takePictureIntent, 0);
+		takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imgUri);
+		takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+		startActivityForResult(takePictureIntent, 1);
 	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
+		if (resultCode == Activity.RESULT_OK) {  
+			tookPhoto = true;
+	    	
+	    }  
+	} 
 	
 private class InfoTask extends AsyncTask<Void, Void, String[]> {
 		ProgressDialog progress;
@@ -65,23 +89,40 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
 		protected void onPostExecute(String[] result) {
 	    	 	progress.dismiss();
                 String message;
-	    	 	if (uploadSuccessful){
-	    	 		message = "Your upload was successful!";
+	    	 	if(!tookPhoto){
+	    	 		message = "Please take a photo to upload";		    	 	
+		    	 	
+	    	 		AlertDialog.Builder builder = new AlertDialog.Builder(FoundItActivity.this);
+	    	 		builder.setMessage(message);
+	    	 		builder.setCancelable(false);
+	    	 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+	    	 		public void onClick(DialogInterface dialog, int id) {
+	    	 			//do things
+	    	 		    //finish();
+	    	 		  }
+	    	 		});
+	    	 		AlertDialog alert = builder.create();
+	    	 		alert.show();
 	    	 	}
-	    	 	else {
-	    	 		message = "Your upload failed :(";
+	    	 	else{	
+		    	 	if (uploadSuccessful){
+		    	 		message = "Your upload was successful!";
+		    	 	}
+		    	 	else {
+		    	 		message = "Your upload failed :(";
+		    	 	}
+	    	 		AlertDialog.Builder builder = new AlertDialog.Builder(FoundItActivity.this);
+	    	 		builder.setMessage(message);
+	    	 		builder.setCancelable(false);
+	    	 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+	    	 		public void onClick(DialogInterface dialog, int id) {
+	    	 			//do things
+	    	 		    finish();
+	    	 		  }
+	    	 		});
+	    	 		AlertDialog alert = builder.create();
+	    	 		alert.show();
 	    	 	}
-    	 		AlertDialog.Builder builder = new AlertDialog.Builder(FoundItActivity.this);
-    	 		builder.setMessage(message);
-    	 		builder.setCancelable(false);
-    	 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-    	 		public void onClick(DialogInterface dialog, int id) {
-    	 			//do things
-    	 		    finish();
-    	 		  }
-    	 		});
-    	 		AlertDialog alert = builder.create();
-    	 		alert.show();
          }
 	     @Override
          protected void onPreExecute() {
@@ -98,20 +139,31 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
 			
 			HttpClient client = new DefaultHttpClient();
 		    HttpPost post = new HttpPost("http://foundit.andrewl.ca/postings");
+		    
+
+		    
 		    try {
-		      List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-		      nameValuePairs.add(new BasicNameValuePair("posting[posting_type]", "2"));
-		      nameValuePairs.add(new BasicNameValuePair("posting[name]", name));
-		      nameValuePairs.add(new BasicNameValuePair("posting[description]", description)); 
-		      post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-		 
-		      HttpResponse response = client.execute(post);
-		     if (response.getStatusLine().getStatusCode()  == 200) {
-		    	  uploadSuccessful = true;
-		      }
+			  MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+			  entity.addPart("posting[name]", new StringBody(name));
+			  entity.addPart("posting[posting_type]", new StringBody("2"));
+			  entity.addPart("posting[description]", new StringBody(description));
+			  if(tookPhoto){
+				  entity.addPart("posting[photo]", new FileBody(f));
+				  post.setEntity(entity);
+				  HttpResponse response = client.execute(post);
+				     if (response.getStatusLine().getStatusCode()  == 200) {
+				    	  uploadSuccessful = true;
+				      }
+			  }
+			  else
+			  {
+				  
+			  }
+
 		    } catch (IOException e) {
 		      e.printStackTrace();
 		    }
+
 		    
 		    return new String[1];
 		}
