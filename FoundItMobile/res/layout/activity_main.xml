@@ -6,26 +6,6 @@
     <!--  android:background="#FFC266"-->
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button3"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_marginBottom="37dp"
-        android:onClick="lostIt"
-        android:text="@string/button_lost" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="29dp"
-        android:onClick="foundIt"
-        android:text="@string/button_found" />
-
-    <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,5 +13,25 @@
         android:layout_centerVertical="true"
         android:onClick="listIt"
         android:text="@string/button_list" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
+        android:onClick="foundIt"
+        android:text="@string/button_found" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button3"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_marginBottom="23dp"
+        android:onClick="lostIt"
+        android:text="@string/button_lost" />
 
 </RelativeLayout>
