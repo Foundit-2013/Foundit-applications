@@ -29,30 +29,37 @@
         </activity>
         <activity
             android:name="com.example.foundit.AllListActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_list" >
         </activity>
         <activity
             android:name="com.example.foundit.Sample"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_sample" >
         </activity>
         <activity
             android:name="com.example.foundit.ItemSelectedActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_item_selected" >
         </activity>
         <activity
             android:name="com.example.foundit.FoundItActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_found_it" >
         </activity>
         <activity
             android:name="com.example.foundit.ListTabberActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_list_tabber" >
         </activity>
         <activity
             android:name="com.example.foundit.LostListActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_lost_list" >
         </activity>
         <activity
             android:name="com.example.foundit.LostItActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_lost_it" >
         </activity>
     </application>
