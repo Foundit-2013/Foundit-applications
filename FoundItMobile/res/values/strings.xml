@@ -14,7 +14,7 @@
     <string name="uploadButton">Upload</string>
     <string name="nameField">Name</string>
     <string name="descriptionField">Description</string>
-    <string name="button_UploadPhoto">UploadPhoto</string>
+    <string name="button_UploadPhoto">Take Photo</string>
     <string name="title_activity_list_tabber">ListTabberActivity</string>
     <string name="title_activity_lost_list">LostListActivity</string>
     <string name="title_activity_lost_it">LostItActivity</string>

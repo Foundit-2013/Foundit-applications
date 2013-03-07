@@ -17,7 +17,7 @@ public class ListTabberActivity extends TabActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_tabber);
 		ActionBar actionBar = getActionBar();
-		actionBar.setIcon(R.drawable.foundit4);
+		actionBar.setIcon(R.drawable.foundit_final_android);
 		
 		TabHost tabHost = getTabHost();
 		

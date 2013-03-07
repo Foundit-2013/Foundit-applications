@@ -18,23 +18,25 @@ public final class R {
     }
     public static final class drawable {
         public static final int foundit4=0x7f020000;
-        public static final int founditblack=0x7f020001;
-        public static final int founditnowhite=0x7f020002;
-        public static final int founditsmall=0x7f020003;
-        public static final int home_icon=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
+        public static final int foundit_final_android=0x7f020001;
+        public static final int founditblack=0x7f020002;
+        public static final int founditnowhite=0x7f020003;
+        public static final int founditsmall=0x7f020004;
+        public static final int home_icon=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int icon=0x7f020007;
+        public static final int stuff=0x7f020008;
     }
     public static final class id {
-        public static final int action_settings=0x7f080009;
-        public static final int button1=0x7f080004;
-        public static final int button2=0x7f080006;
-        public static final int button3=0x7f080007;
-        public static final int descriptionField=0x7f080003;
-        public static final int menu_settings=0x7f080008;
-        public static final int nameField=0x7f080001;
-        public static final int text=0x7f080005;
-        public static final int textView1=0x7f080000;
-        public static final int uploadButton=0x7f080002;
+        public static final int action_settings=0x7f080008;
+        public static final int button1=0x7f080000;
+        public static final int button2=0x7f080005;
+        public static final int button3=0x7f080006;
+        public static final int descriptionField=0x7f080001;
+        public static final int menu_settings=0x7f080007;
+        public static final int nameField=0x7f080002;
+        public static final int text=0x7f080004;
+        public static final int uploadButton=0x7f080003;
     }
     public static final class layout {
         public static final int activity_all_list=0x7f030000;

@@ -16,7 +16,7 @@ public class ItemSelectedActivity extends Activity {
 		setContentView(R.layout.activity_item_selected);
 		TextView text = (TextView) findViewById(R.id.text);
 		ActionBar actionBar = getActionBar();
-		actionBar.setIcon(R.drawable.foundit4);
+		actionBar.setIcon(R.drawable.foundit_final_android);
 		Intent intent = getIntent();
 		intent.getStringExtra("");
 		text.setText("Id:" +intent.getStringExtra("ID") + "\n"
