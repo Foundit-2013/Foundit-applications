@@ -32,6 +32,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -75,7 +76,11 @@ public class AllListActivity extends ListActivity implements Parcelable {
 			intent.putExtra("DESCRIPTION",lostItemsJSON.getJSONObject(position).getString("description"));
 			intent.putExtra("POSTING_TYPE",lostItemsJSON.getJSONObject(position).getString("posting_type"));
 			intent.putExtra("NAME",lostItemsJSON.getJSONObject(position).getString("name"));
-			intent.putExtra("IMAGE",lostItemsJSON.getJSONObject(position).getString("image"));
+			//intent.putExtra("IMAGE",lostItemsJSON.getJSONObject(position).getString("image"));
+			String temp = lostItemsJSON.getJSONObject(position).getString("photo_url_large");
+			int me = 1;
+			intent.putExtra("LARGE_PHOTO_PATH",lostItemsJSON.getJSONObject(position).getString("photo_url_large"));
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
