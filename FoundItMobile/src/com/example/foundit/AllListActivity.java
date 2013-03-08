@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -24,6 +25,9 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -83,6 +87,7 @@ public class AllListActivity extends ListActivity implements Parcelable {
 	
 	private class InfoTask extends AsyncTask<Void, Void, String[]> {
 		ProgressDialog progress;
+		Bitmap[] pics;
 	     @Override
          protected void onPostExecute(String[] result) {
 	    	 	progress.dismiss();
@@ -102,7 +107,7 @@ public class AllListActivity extends ListActivity implements Parcelable {
 	    	 	}
 	    	 	else{
 	    	 	String[] List = result;
-		    	setListAdapter(new ArrayAdapter<String>(AllListActivity.this, R.layout.activity_all_list,List));
+		    	setListAdapter(new FoundItArrayAdapter(AllListActivity.this,List, pics));
 		    	ListView listView = getListView();
 		    	
 				listView.setTextFilterEnabled(true);
@@ -121,10 +126,13 @@ public class AllListActivity extends ListActivity implements Parcelable {
 				 return null;
 			 }
 	 		 String[] list = new String[lostItemsJSON.length()];
+	 		 pics = new Bitmap[lostItemsJSON.length()]; 
 	 		 try {
 	 			//generate the listview to be displayed
 	 			for(int i=0; i< lostItemsJSON.length();i++){
 	 				JSONObject jsonObject = lostItemsJSON.getJSONObject(i);
+	 				pics[i] = downloadBitmap("http://foundit.andrewl.ca" + jsonObject.getString("photo_url_thumb"));
+	 				
 	 				if(jsonObject.getString("description").length() < 100){
 	 					list[i] = jsonObject.getString("name") +":  "+ jsonObject.getString("description");
 	 				}
@@ -139,6 +147,43 @@ public class AllListActivity extends ListActivity implements Parcelable {
 			return list;
 		}
 	 }
+	
+	static Bitmap downloadBitmap(String url) {
+	    final AndroidHttpClient client = AndroidHttpClient.newInstance("Android");
+	    final HttpGet getRequest = new HttpGet(url);
+
+	    try {
+	        HttpResponse response = client.execute(getRequest);
+	        final int statusCode = response.getStatusLine().getStatusCode();
+	        if (statusCode != HttpStatus.SC_OK) { 
+	            return null;
+	        }
+	        
+	        final HttpEntity entity = response.getEntity();
+	        if (entity != null) {
+	            InputStream inputStream = null;
+	            try {
+	                inputStream = entity.getContent(); 
+	                final Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+	                return bitmap;
+	            } finally {
+	                if (inputStream != null) {
+	                    inputStream.close();  
+	                }
+	                entity.consumeContent();
+	            }
+	        }
+	    } catch (Exception e) {
+	        // Could provide a more explicit error message for IOException or IllegalStateException
+	        getRequest.abort();
+	    } finally {
+	        if (client != null) {
+	            client.close();
+	        }
+	    }
+	    return null;
+	}
+
 	
 	public JSONArray getJSONList(){
 		JSONArray jsonArray = null;

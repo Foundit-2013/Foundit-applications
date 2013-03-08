@@ -93,7 +93,7 @@ public class LostListActivity extends ListActivity {
 	    	 	}
 	    	 	else{
 	    	 	String[] List = result;
-		    	setListAdapter(new ArrayAdapter<String>(LostListActivity.this, R.layout.activity_all_list,List));
+		    	setListAdapter(new ArrayAdapter<String>(LostListActivity.this, R.layout.activity_lost_list,List));
 		    	ListView listView = getListView();
 		    	
 				listView.setTextFilterEnabled(true);
