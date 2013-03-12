@@ -30,10 +30,11 @@ public final class R {
         public static final int founditsmall=0x7f02000a;
         public static final int home_icon=0x7f02000b;
         public static final int ic_launcher=0x7f02000c;
-        public static final int stuff=0x7f02000d;
+        public static final int ic_menu_refresh=0x7f02000d;
+        public static final int stuff=0x7f02000e;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000e;
+        public static final int action_settings=0x7f08000f;
         public static final int button1=0x7f080002;
         public static final int button1Text=0x7f080008;
         public static final int button2=0x7f080009;
@@ -44,6 +45,7 @@ public final class R {
         public static final int descriptionField=0x7f080003;
         public static final int image=0x7f080000;
         public static final int imageView1=0x7f080006;
+        public static final int menu_refresh=0x7f08000e;
         public static final int menu_settings=0x7f08000d;
         public static final int nameField=0x7f080005;
         public static final int text=0x7f080001;
@@ -78,6 +80,7 @@ public final class R {
         public static final int hello_world=0x7f050001;
         public static final int menu_settings=0x7f050002;
         public static final int nameField=0x7f05000b;
+        public static final int refreshString=0x7f050012;
         public static final int title_activity_found_it=0x7f050009;
         public static final int title_activity_item_selected=0x7f050008;
         public static final int title_activity_list=0x7f050006;

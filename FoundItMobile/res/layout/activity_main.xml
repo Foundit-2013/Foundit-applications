@@ -12,7 +12,7 @@
         android:layout_height="170dp"
         android:layout_marginTop="39dp"
         android:layout_marginLeft="40dp"
-        android:src="@drawable/foundit_final" />
+        android:src="@drawable/foundit_final_android" />
 
 	<ImageView
 	     android:id="@+id/clouds"
