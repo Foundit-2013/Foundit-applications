@@ -12,14 +12,12 @@ import android.widget.TextView;
 public class FoundItArrayAdapter extends ArrayAdapter<String> {
 	private final Context context;
 	private final String[] values;
-	int count;
 	Bitmap[] pics;
  
 	public FoundItArrayAdapter(Context context, String[] values, Bitmap[] pics) {
 		super(context, R.layout.activity_all_list, values);
 		this.context = context;
 		this.values = values;
-		count = 0;
 		this.pics = pics;
 	}
  
@@ -32,13 +30,9 @@ public class FoundItArrayAdapter extends ArrayAdapter<String> {
 		TextView textView = (TextView) rowView.findViewById(R.id.text);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.image);
 		textView.setText(values[position]);
+
  
-		// Change icon based on name
-		String s = values[position];
- 
-		//System.out.println(s);
- 
-	    imageView.setImageBitmap(pics[count++]);
+	    imageView.setImageBitmap(pics[position]);
  
 		return rowView;
 	}

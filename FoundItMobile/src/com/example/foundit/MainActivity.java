@@ -18,10 +18,12 @@ public class MainActivity extends Activity {
 		ActionBar actionBar = getActionBar();
 		//actionBar.setIcon(R.drawable.founditsmall);
 		//actionBar.setIcon(R.drawable.founditnowhite);
+
+		/*		
 		actionBar.setIcon(R.drawable.foundit_final_android);
 		//actionBar.setBackgroundDrawable(new ColorDrawable(Color.rgb(51, 51, 51)));
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.rgb(111, 186, 240)));
-		actionBar.setTitle("");
+		actionBar.setTitle("");*/
 	}
 
 	@Override

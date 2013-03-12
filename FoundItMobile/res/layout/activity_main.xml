@@ -2,36 +2,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/clouds">
     <!--  android:background="#FFC266"-->
 
-    <Button
-        android:id="@+id/button3"
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_centerVertical="true"
-        android:onClick="listIt"
-        android:text="@string/button_list" />
+        android:layout_marginTop="39dp"
+        android:src="@drawable/foundit_final_android" />
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="275dp"
+        android:layout_marginLeft="90dp"
         android:onClick="foundIt"
         android:text="@string/button_found" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button3"
         android:layout_alignLeft="@+id/button1"
-        android:layout_marginBottom="23dp"
+        android:layout_below="@+id/button1"
+        android:layout_marginTop="40dp"
         android:onClick="lostIt"
         android:text="@string/button_lost" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_below="@+id/button2"
+        android:layout_marginTop="40dp"
+        android:onClick="listIt"
+        android:text="@string/button_list" />
 
 </RelativeLayout>
