@@ -20,5 +20,6 @@
     <string name="title_activity_lost_it">LostItActivity</string>
     <string name="action_settings">Settings</string>
     <string name="refreshString">Refresh List</string>
+    <string name="title_activity_fullscreen_image">FullscreenImage</string>
 
 </resources>

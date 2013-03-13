@@ -22,12 +22,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class ItemSelectedActivity extends Activity {
 String photoPath; 
+Bitmap pic;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,7 +64,6 @@ String photoPath;
 	////////////////////////////////////////////////////////////////
 	private class PicTask extends AsyncTask<Void, Void, String[]> {
 		ProgressDialog progress;
-		Bitmap pic;
 	     @Override
          protected void onPostExecute(String[] result) {
 	    	 	progress.dismiss();
@@ -114,5 +115,12 @@ String photoPath;
 	        }
 	    }
 	    return null;
+	}
+	public void fullPic(View view){
+		 Intent intent = new Intent(this, FullscreenImage.class);
+        // Drawable drawable   = imageView.getDrawable();
+       //  Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+         intent.putExtra("IMAGE", pic);
+         startActivity(intent);
 	}
 }

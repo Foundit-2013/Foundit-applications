@@ -36,16 +36,20 @@ public class ListTabberActivity extends TabActivity {
 	     
 	     TabSpec lostSpec = tabHost.newTabSpec(LOST_SPEC);
 	     // Tab Icon
-	        lostSpec.setIndicator(LOST_SPEC, getResources().getDrawable(R.drawable.ic_launcher));
+	     lostSpec.setIndicator(LOST_SPEC, getResources().getDrawable(R.drawable.ic_launcher));
 	    
 		 Intent lostIntent = new Intent(this, LostListActivity.class);
 	        // Tab Content
 	     lostSpec.setContent(lostIntent);
-
+	    // tabHost.getTabWidget().setStripEnabled(true);
+	    // tabHost.getTabWidget().setLeftStripDrawable(R.drawable.blah);
+	     //tabHost.getTabWidget().setRightStripDrawable(R.drawable.blah);
+	   //  tabHost.getTabWidget().setRightStripDrawable(R.drawable.tab_unselected_pressed_example);
 	     tabHost.addTab(foundSpec);
 	     //tabHost.getTabWidget().getChildAt(1).setBackgroundColor(Color.rgb(228, 228, 228));
 	     tabHost.addTab(lostSpec);
-	     
+	     //tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(R.drawable.blah);
+	     //tabHost.
 	}
 
 	@Override
