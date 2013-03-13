@@ -5,6 +5,7 @@ class PostingsController < ApplicationController
     @postings = Posting.all
     
     #@postings = Posting.find(:all, :order => "name")
+    @postings = Posting.find(:all, :order => "created_at DESC")
 
     respond_to do |format|
       #format.json { render json: @postings, :content_type => 'application/json'}
@@ -34,6 +35,7 @@ class PostingsController < ApplicationController
   def show_lost
     #@posting = Posting.find(params[:id])
     @postings = Posting.where('posting_type == 1')
+    @postings = @postings.find(:all, :order => "created_at DESC")
 
     respond_to do |format|
       format.json { render :json => @postings.to_json(:methods => [:photo_url_thumb, :photo_url_large]), :content_type => 'application/json'}
@@ -47,6 +49,7 @@ class PostingsController < ApplicationController
   def show_found
     #@posting = Posting.find(params[:id])
     @postings = Posting.where('posting_type == 2')
+    @postings = @postings.find(:all, :order => "created_at DESC")
 
     respond_to do |format|
       format.json { render :json => @postings.to_json(:methods => [:photo_url_thumb, :photo_url_large]), :content_type => 'application/json'}

@@ -28,6 +28,7 @@ Type = 2 = Found
 
 <% 
 @postings = Posting.where('posting_type == 1')
+@postings = @postings.find(:all, :order => "created_at DESC")
 @postings.each do |posting| %>
   <tr>
   	<td><%= posting.id %></td>
