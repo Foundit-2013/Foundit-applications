@@ -3,37 +3,95 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#FFC266" >
-    
+    android:background="@drawable/background">
+    <!--  android:background="#FFC266"-->
 
-    <Button
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="300dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginLeft="40dp"
+        android:src="@drawable/foundit_final_android" />
+
+	<ImageView
+	     android:id="@+id/clouds"
+	     android:layout_marginTop="600dp"
+	     android:layout_width="fill_parent"
+	     android:layout_height="wrap_content"
+	     android:src="@drawable/clouds" />
+
+	 <ImageView
+        android:src="@drawable/found_it_button"
         android:id="@+id/button1"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginRight="44dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="290dp"
+        android:layout_marginLeft="90dp"
         android:onClick="foundIt"
         android:text="@string/button_found" />
+    <TextView
+	    android:id="@+id/button1Text"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/button1"
+	    android:layout_alignTop="@+id/button1"
+	    android:layout_alignRight="@+id/button1"
+	    android:layout_alignBottom="@+id/button1"
+	    android:layout_margin="1dp"
+	    android:gravity="center"
+	    android:text="Found It"
+	    android:textColor="#FFFFFF"
+	    android:textSize="25dp" />
 
-    <Button
+    <ImageView
+        android:src="@drawable/found_it_button"
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/button1"
         android:layout_below="@+id/button1"
         android:layout_marginTop="40dp"
         android:onClick="lostIt"
         android:text="@string/button_lost" />
+    
+        <TextView
+	    android:id="@+id/button2Text"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/button2"
+	    android:layout_alignTop="@+id/button2"
+	    android:layout_alignRight="@+id/button2"
+	    android:layout_alignBottom="@+id/button2"
+	    android:layout_margin="1dp"
+	    android:gravity="center"
+	    android:text="Lost It"
+	    android:textColor="#FFFFFF"
+	    android:textSize="25dp" />
 
-    <Button
+    <ImageView
+        android:src="@drawable/found_it_button"
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_below="@+id/button2"
+        android:layout_marginTop="40dp"
         android:onClick="listIt"
         android:text="@string/button_list" />
-
+    
+        <TextView
+	    android:id="@+id/button3Text"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/button3"
+	    android:layout_alignTop="@+id/button3"
+	    android:layout_alignRight="@+id/button3"
+	    android:layout_alignBottom="@+id/button3"
+	    android:layout_margin="1dp"
+	    android:gravity="center"
+	    android:text="List It"
+	    android:textColor="#FFFFFF"
+	    android:textSize="25dp" />	     
+        
 </RelativeLayout>
