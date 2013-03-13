@@ -20,9 +20,9 @@ public class ListTabberActivity extends TabActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_tabber);
 		ActionBar actionBar = getActionBar();
-		actionBar.setIcon(R.drawable.foundit_final_android);
+		actionBar.setIcon(R.drawable.foundit_final_small);
 		actionBar.setTitle("");
-		actionBar.setBackgroundDrawable(new ColorDrawable(Color.rgb(111, 186, 240)));
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color.rgb(117, 150, 194)));
 		TabHost tabHost = getTabHost();
 		
 		TabSpec foundSpec = tabHost.newTabSpec(FOUND_SPEC);
@@ -41,11 +41,9 @@ public class ListTabberActivity extends TabActivity {
 		 Intent lostIntent = new Intent(this, LostListActivity.class);
 	        // Tab Content
 	     lostSpec.setContent(lostIntent);
-	     
-	     
-	     
-	     
+
 	     tabHost.addTab(foundSpec);
+	     //tabHost.getTabWidget().getChildAt(1).setBackgroundColor(Color.rgb(228, 228, 228));
 	     tabHost.addTab(lostSpec);
 	     
 	}

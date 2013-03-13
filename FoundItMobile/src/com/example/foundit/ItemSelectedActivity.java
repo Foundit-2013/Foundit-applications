@@ -32,18 +32,22 @@ String photoPath;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_item_selected);
-		TextView text = (TextView) findViewById(R.id.text);
+		TextView nameView = (TextView) findViewById(R.id.name);
+		TextView descView = (TextView) findViewById(R.id.text);
+		TextView dateView = (TextView) findViewById(R.id.date);
 		ActionBar actionBar = getActionBar();
 		actionBar.setIcon(R.drawable.foundit_final_android);
 		Intent intent = getIntent();
 		intent.getStringExtra("");
-		text.setText("Id:" +intent.getStringExtra("ID") + "\n"
-			+ "Name:" + intent.getStringExtra("NAME") + "\n"
-			+ "Updated_at:" + intent.getStringExtra("UPDATED_AT") + "\n"
+		nameView.setText(intent.getStringExtra("NAME"));
+		descView.setText(intent.getStringExtra("DESCRIPTION"));
+		String dateString = intent.getStringExtra("CREATED_AT");
+		String date = dateString.substring(0, dateString.indexOf("T"));
+		String time = dateString.substring(dateString.indexOf("T") + 1, dateString.length()-1);
+		dateView.setText(date + " at " + time);
+		/*text.setText(intent.getStringExtra("NAME") + "\n"
 			+ "Created at:" + intent.getStringExtra("CREATED_AT") + "\n"
-			+ "Description:" + intent.getStringExtra("DESCRIPTION") + "\n"
-			+ "Posting_type:" + intent.getStringExtra("POSTING_TYPE")
-			+ "Photo_path:" + intent.getStringExtra("LARGE_PHOTO_PATH"));
+			+ "Description:" + intent.getStringExtra("DESCRIPTION") + "\n");*/
 		photoPath = intent.getStringExtra("LARGE_PHOTO_PATH");
 		PicTask task = new PicTask();
 		task.execute();
