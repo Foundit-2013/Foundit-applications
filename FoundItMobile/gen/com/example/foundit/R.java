@@ -37,7 +37,6 @@ public final class R {
     }
     public static final class id {
         public static final int ScrlView=0x7f080002;
-        public static final int action_settings=0x7f080019;
         public static final int button1=0x7f080011;
         public static final int button1Text=0x7f080012;
         public static final int button2=0x7f080013;
