@@ -170,6 +170,12 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
 			
 			descField = (EditText)findViewById(R.id.descriptionField);
 			String description = descField.getText().toString();
+			String noNewLineDescription;
+			if((description.length() - (description.replaceAll("\\n","").length())) > 6){
+				 noNewLineDescription = description.replaceAll("\\n", " ");	
+			}
+			else
+				noNewLineDescription = description;
 			
 			HttpClient client = new DefaultHttpClient();
 		    HttpPost post = new HttpPost("http://foundit.andrewl.ca/postings");
@@ -180,7 +186,7 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
 			  MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
 			  entity.addPart("posting[name]", new StringBody(name));
 			  entity.addPart("posting[posting_type]", new StringBody("2"));
-			  entity.addPart("posting[description]", new StringBody(description));
+			  entity.addPart("posting[description]", new StringBody(noNewLineDescription));
 			  if(tookPhoto){
 				  entity.addPart("posting[photo]", new FileBody(f));
 				  post.setEntity(entity);
