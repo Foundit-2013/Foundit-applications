@@ -32,6 +32,7 @@ import android.widget.TextView;
 public class ItemSelectedActivity extends Activity {
 String photoPath; 
 Bitmap pic;
+int parentActivity;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,6 +48,13 @@ Bitmap pic;
 		intent.getStringExtra("");
 		nameView.setText(intent.getStringExtra("NAME"));
 		descView.setText(intent.getStringExtra("DESCRIPTION"));
+		
+		TextView itemState = (TextView) findViewById(R.id.itemState);
+		parentActivity = intent.getIntExtra("type", 0);
+		if(parentActivity == 1)
+			itemState.setText("Found");
+		else
+			itemState.setText("Lost");
 		String dateString = intent.getStringExtra("CREATED_AT");
 		String date = dateString.substring(0, dateString.indexOf("T"));
 		String time = dateString.substring(dateString.indexOf("T") + 1, dateString.length()-1);
@@ -124,10 +132,13 @@ Bitmap pic;
 	    return null;
 	}
 	public void fullPic(View view){
-		 Intent intent = new Intent(this, FullscreenImage.class);
-        // Drawable drawable   = imageView.getDrawable();
-       //  Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
-         intent.putExtra("IMAGE", pic);
-         startActivity(intent);
+		if(parentActivity == 1)
+		{
+			Intent intent = new Intent(this, FullscreenImage.class);
+	        // Drawable drawable   = imageView.getDrawable();
+	       //  Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+			 intent.putExtra("IMAGE", pic);
+	         startActivity(intent);
+		}
 	}
 }

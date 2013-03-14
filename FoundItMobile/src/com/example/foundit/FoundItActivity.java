@@ -1,5 +1,7 @@
 package com.example.foundit;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -18,6 +20,8 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -26,15 +30,18 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 public class FoundItActivity extends Activity {
 	File f;
 	Boolean tookPhoto = false;
 	EditText nameField;
 	EditText descField;
+	ImageView takenPhoto;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,6 +50,8 @@ public class FoundItActivity extends Activity {
 		actionBar.setIcon(R.drawable.foundit_final_small);
 		actionBar.setTitle("");
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.rgb(117, 150, 194)));
+		takenPhoto = (ImageView) findViewById(R.id.takenPhoto);
+		takenPhoto.setVisibility(8);
 		if (android.os.Build.VERSION.SDK_INT > 9) {
 		      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		      StrictMode.setThreadPolicy(policy);
@@ -82,7 +91,28 @@ public class FoundItActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
 		if (resultCode == Activity.RESULT_OK) {  
 			tookPhoto = true;
-	    	
+			takenPhoto.setVisibility(1);
+			Bitmap image = BitmapFactory.decodeFile(f.toString());
+			float width = image.getWidth();
+			float height = image.getHeight();
+			Bitmap compressedImage;
+			
+			
+			if(width > height){
+				compressedImage = Bitmap.createScaledBitmap(image, 600, 400, false);
+			}
+			else{
+				compressedImage = Bitmap.createScaledBitmap(image, 400, 600, false);
+			}
+				
+			
+			//ByteArrayOutputStream out = new ByteArrayOutputStream();
+			System.out.println(image.getByteCount());
+			
+		    /*image.compress(Bitmap.CompressFormat.PNG, 5, out);
+		    Bitmap compressedImage = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));*/
+		    System.out.println(compressedImage.getByteCount());
+			takenPhoto.setImageBitmap(compressedImage);
 	    }  
 	} 
 	

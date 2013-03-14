@@ -80,7 +80,7 @@ public class AllListActivity extends ListActivity implements Parcelable {
 			String temp = lostItemsJSON.getJSONObject(position).getString("photo_url_large");
 			int me = 1;
 			intent.putExtra("LARGE_PHOTO_PATH",lostItemsJSON.getJSONObject(position).getString("photo_url_large"));
-			
+			intent.putExtra("type", 1);//1 for found
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
