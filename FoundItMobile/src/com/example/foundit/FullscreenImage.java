@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ImageView;
 
 public class FullscreenImage extends Activity {
@@ -26,6 +27,9 @@ public class FullscreenImage extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.///
 		getMenuInflater().inflate(R.menu.activity_fullscreen_image, menu);
 		return true;
+	}
+	public void close(View view){
+		finish();
 	}
 
 }

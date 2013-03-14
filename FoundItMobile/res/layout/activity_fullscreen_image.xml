@@ -11,6 +11,7 @@
         android:layout_height="fill_parent"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:onClick="close"
         android:src="@drawable/background" />
 
 </RelativeLayout>
