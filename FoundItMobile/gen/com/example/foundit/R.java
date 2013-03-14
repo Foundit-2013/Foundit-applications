@@ -23,21 +23,17 @@ public final class R {
         public static final int blue_pressed=0x7f020003;
         public static final int clouds=0x7f020004;
         public static final int found_it_button=0x7f020005;
-        public static final int foundit4=0x7f020006;
-        public static final int foundit_final=0x7f020007;
-        public static final int foundit_final_android=0x7f020008;
-        public static final int foundit_final_small=0x7f020009;
-        public static final int founditblack=0x7f02000a;
-        public static final int founditnowhite=0x7f02000b;
-        public static final int founditsmall=0x7f02000c;
-        public static final int home_icon=0x7f02000d;
-        public static final int ic_launcher=0x7f02000e;
-        public static final int ic_menu_refresh=0x7f02000f;
-        public static final int questionmark=0x7f020010;
-        public static final int stuff=0x7f020011;
-        public static final int tab_selected_pressed_example=0x7f020012;
-        public static final int tab_unselected_pressed_example=0x7f020013;
-        public static final int textbackground=0x7f020014;
+        public static final int foundit_final=0x7f020006;
+        public static final int foundit_final_android=0x7f020007;
+        public static final int foundit_final_small=0x7f020008;
+        public static final int home_icon=0x7f020009;
+        public static final int ic_launcher=0x7f02000a;
+        public static final int ic_menu_refresh=0x7f02000b;
+        public static final int questionmark=0x7f02000c;
+        public static final int stuff=0x7f02000d;
+        public static final int tab_selected_pressed_example=0x7f02000e;
+        public static final int tab_unselected_pressed_example=0x7f02000f;
+        public static final int textbackground=0x7f020010;
     }
     public static final class id {
         public static final int ScrlView=0x7f080002;
