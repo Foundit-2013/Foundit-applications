@@ -21,6 +21,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,7 +40,9 @@ Bitmap pic;
 		TextView descView = (TextView) findViewById(R.id.text);
 		TextView dateView = (TextView) findViewById(R.id.date);
 		ActionBar actionBar = getActionBar();
-		actionBar.setIcon(R.drawable.foundit_final_android);
+		actionBar.setIcon(R.drawable.foundit_final_small);
+		actionBar.setTitle("");
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color.rgb(117, 150, 194)));
 		Intent intent = getIntent();
 		intent.getStringExtra("");
 		nameView.setText(intent.getStringExtra("NAME"));
@@ -68,7 +72,10 @@ Bitmap pic;
          protected void onPostExecute(String[] result) {
 	    	 	progress.dismiss();
 	    	 	ImageView img = (ImageView) findViewById(R.id.imageView1);
-				img.setImageBitmap(pic);
+	    	 	if(pic != null)
+	    	 		img.setImageBitmap(pic);
+	    	 	else
+	    	 		img.setImageResource(R.drawable.questionmark);
          }
 	     @Override
          protected void onPreExecute() {

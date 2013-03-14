@@ -27,7 +27,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="290dp"
-        android:layout_marginLeft="90dp"
+        android:layout_centerHorizontal="true"
         android:onClick="foundIt"
         android:text="@string/button_found" />
     <TextView

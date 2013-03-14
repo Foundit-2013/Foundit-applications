@@ -12,18 +12,24 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class LostItActivity extends Activity {
 
@@ -33,6 +39,14 @@ public class LostItActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_found_it);
+		ActionBar actionBar = getActionBar();
+		actionBar.setIcon(R.drawable.foundit_final_small);
+		actionBar.setTitle("");
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color.rgb(117, 150, 194)));
+		TextView desc = (TextView) findViewById(R.id.foundItDesc);
+		desc.setText("Upload a description of the item you have lost");
+		Button takePhotoButton = (Button) findViewById(R.id.takePhotoButton);
+		takePhotoButton.setVisibility(8);
 		if (android.os.Build.VERSION.SDK_INT > 9) {
 		      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		      StrictMode.setThreadPolicy(policy);
