@@ -15,6 +15,7 @@ import android.widget.TabHost.TabSpec;
 public class ListTabberActivity extends TabActivity {
 	 private static final String FOUND_SPEC = "Found";
 	 private static final String LOST_SPEC = "Lost";
+	 TabHost tabHost;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,7 +24,9 @@ public class ListTabberActivity extends TabActivity {
 		actionBar.setIcon(R.drawable.foundit_final_small);
 		actionBar.setTitle("");
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.rgb(117, 150, 194)));
-		TabHost tabHost = getTabHost();
+		tabHost = getTabHost();
+		Intent tabSelected = getIntent();
+		int currentTab = tabSelected.getIntExtra("currentTab", 0);
 		
 		TabSpec foundSpec = tabHost.newTabSpec(FOUND_SPEC);
 	     // Tab Icon
@@ -48,6 +51,9 @@ public class ListTabberActivity extends TabActivity {
 	     tabHost.addTab(foundSpec);
 	     //tabHost.getTabWidget().getChildAt(1).setBackgroundColor(Color.rgb(228, 228, 228));
 	     tabHost.addTab(lostSpec);
+	     
+	     tabHost.setCurrentTab(currentTab);
+
 	     //tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(R.drawable.blah);
 	     //tabHost.
 	}
@@ -59,7 +65,9 @@ public class ListTabberActivity extends TabActivity {
 		return true;
 	}
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-	    Intent refresh = new Intent(this, ListTabberActivity.class);
+	    int currentTab = tabHost.getCurrentTab();
+		Intent refresh = new Intent(this, ListTabberActivity.class);
+		refresh.putExtra("currentTab", currentTab);
 	    startActivity(refresh);
 	    finish();
 	    return true;
