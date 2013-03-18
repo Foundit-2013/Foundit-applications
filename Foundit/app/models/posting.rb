@@ -24,6 +24,10 @@ class Posting < ActiveRecord::Base
     #photo.path(:thumb)
   end
   
+  def created_at_formatted
+    created_at.strftime("%d-%b-%Y %H:%M" )
+  end
+  
   validates :name, :presence => true, :length => { :in => 3..20 }
   validates :description, :presence => true, :length => { :minimum => 10 }
   validates :posting_type, :presence => true
