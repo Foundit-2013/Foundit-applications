@@ -10,7 +10,7 @@ class PostingsController < ApplicationController
     respond_to do |format|
       #format.json { render json: @postings, :content_type => 'application/json'}
       #format.json  { render :json => @things.to_json(:include => { :photos => { :only => [:id, :url] } }) }
-      format.json { render :json => @postings.to_json(:methods => [:photo_url_thumb, :photo_url_large]), :content_type => 'application/json'}
+      format.json { render :json => @postings.to_json(:methods => [:photo_url_thumb, :photo_url_large, :created_at_formatted]), :content_type => 'application/json'}
       #@postings.to_json(:only => [:id,:name,:description,:posting_type], :methods => [:photo_url])
       #format.xml  { render :xml => @postings }
       format.html # index.html.erb
@@ -38,7 +38,7 @@ class PostingsController < ApplicationController
     @postings = @postings.find(:all, :order => "created_at DESC")
 
     respond_to do |format|
-      format.json { render :json => @postings.to_json(:methods => [:photo_url_thumb, :photo_url_large]), :content_type => 'application/json'}
+      format.json { render :json => @postings.to_json(:methods => [:photo_url_thumb, :photo_url_large, :created_at_formatted]), :content_type => 'application/json'}
       #format.json { render json: @postings }
       format.html { render action: "show_lost" }
     end
@@ -52,7 +52,7 @@ class PostingsController < ApplicationController
     @postings = @postings.find(:all, :order => "created_at DESC")
 
     respond_to do |format|
-      format.json { render :json => @postings.to_json(:methods => [:photo_url_thumb, :photo_url_large]), :content_type => 'application/json'}
+      format.json { render :json => @postings.to_json(:methods => [:photo_url_thumb, :photo_url_large, :created_at_formatted]), :content_type => 'application/json'}
       #format.json { render json: @postings }
       format.html { render action: "show_found" }
     end
