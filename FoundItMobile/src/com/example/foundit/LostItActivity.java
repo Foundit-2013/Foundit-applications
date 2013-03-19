@@ -26,6 +26,7 @@ import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -130,5 +131,8 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
 		    return new String[1];
 		}
 	 }
-
+	public void closeKeyboard(View view){
+	 InputMethodManager inputMethodManager = (InputMethodManager)  this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+	    inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+}
 }

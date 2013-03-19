@@ -23,16 +23,19 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ItemSelectedActivity extends Activity {
 String photoPath; 
 Bitmap pic;
 int parentActivity;
+Bitmap smallPic;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,6 +49,10 @@ int parentActivity;
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.rgb(117, 150, 194)));
 		Intent intent = getIntent();
 		intent.getStringExtra("");
+		
+		//use this small pic if we cant download a large image
+		smallPic = (Bitmap) this.getIntent().getExtras().getParcelable("IMAGE");
+		
 		nameView.setText(intent.getStringExtra("NAME"));
 		descView.setText(intent.getStringExtra("DESCRIPTION"));
 		
@@ -80,10 +87,22 @@ int parentActivity;
          protected void onPostExecute(String[] result) {
 	    	 	progress.dismiss();
 	    	 	ImageView img = (ImageView) findViewById(R.id.imageView1);
-	    	 	if(pic != null)
-	    	 		img.setImageBitmap(pic);
-	    	 	else
+	    	 	if(parentActivity == 2)
+	    	 	{
 	    	 		img.setImageResource(R.drawable.questionmark);
+	    	 	}
+	    	 	else if(pic != null)
+	    	 		img.setImageBitmap(pic);
+	    	 	else{
+	    	 		//img.setImageResource(R.drawable.missing_image);
+	    	 		img.setImageBitmap(smallPic);
+	    	 
+	    	 	Toast toast = Toast.makeText(ItemSelectedActivity.this, "Could not download full image", Toast.LENGTH_LONG);
+				TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+				v.setGravity(Gravity.CENTER);
+				toast.setGravity(Gravity.CENTER, 0, 0);
+				toast.show();
+	    	 	}
          }
 	     @Override
          protected void onPreExecute() {
@@ -132,7 +151,7 @@ int parentActivity;
 	    return null;
 	}
 	public void fullPic(View view){
-		if(parentActivity == 1)
+		if(parentActivity == 1 && pic != null)
 		{
 			Intent intent = new Intent(this, FullscreenImage.class);
 	        // Drawable drawable   = imageView.getDrawable();

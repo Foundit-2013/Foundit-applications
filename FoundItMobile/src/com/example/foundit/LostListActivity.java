@@ -62,7 +62,7 @@ public class LostListActivity extends ListActivity {
 			intent.putExtra("DESCRIPTION",lostItemsJSON.getJSONObject(position).getString("description"));
 			intent.putExtra("POSTING_TYPE",lostItemsJSON.getJSONObject(position).getString("posting_type"));
 			intent.putExtra("NAME",lostItemsJSON.getJSONObject(position).getString("name"));
-			intent.putExtra("IMAGE",lostItemsJSON.getJSONObject(position).getString("image"));
+			//intent.putExtra("IMAGE",lostItemsJSON.getJSONObject(position).getString("image"));
 			intent.putExtra("type", 2);//2 for lost
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -172,4 +172,5 @@ public class LostListActivity extends ListActivity {
 		}
 		return jsonArray;
 	}
+	
 }
