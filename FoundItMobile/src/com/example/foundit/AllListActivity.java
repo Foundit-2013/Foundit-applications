@@ -46,6 +46,7 @@ import android.widget.ListView;
 @SuppressLint("NewApi")
 public class AllListActivity extends ListActivity implements Parcelable {
 	private JSONArray lostItemsJSON;
+	Bitmap[] pics;
 	//@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,9 @@ public class AllListActivity extends ListActivity implements Parcelable {
 			intent.putExtra("DESCRIPTION",lostItemsJSON.getJSONObject(position).getString("description"));
 			intent.putExtra("POSTING_TYPE",lostItemsJSON.getJSONObject(position).getString("posting_type"));
 			intent.putExtra("NAME",lostItemsJSON.getJSONObject(position).getString("name"));
+			//send the small pic so that it can be used if we need it
+			intent.putExtra("IMAGE", pics[position]);
+			
 			//intent.putExtra("IMAGE",lostItemsJSON.getJSONObject(position).getString("image"));
 			String temp = lostItemsJSON.getJSONObject(position).getString("photo_url_large");
 			int me = 1;
@@ -92,7 +96,7 @@ public class AllListActivity extends ListActivity implements Parcelable {
 	
 	private class InfoTask extends AsyncTask<Void, Void, String[]> {
 		ProgressDialog progress;
-		Bitmap[] pics;
+		//Bitmap[] pics;
 	     @Override
          protected void onPostExecute(String[] result) {
 	    	 	progress.dismiss();
@@ -136,8 +140,16 @@ public class AllListActivity extends ListActivity implements Parcelable {
 	 			//generate the listview to be displayed
 	 			for(int i=0; i< lostItemsJSON.length();i++){
 	 				JSONObject jsonObject = lostItemsJSON.getJSONObject(i);
-	 				pics[i] = downloadBitmap("http://foundit.andrewl.ca" + jsonObject.getString("photo_url_thumb"));
-	 				
+	 				Bitmap temp = downloadBitmap("http://foundit.andrewl.ca" + jsonObject.getString("photo_url_thumb"));
+	 				//if connection died while downloading the images, give it a missing image
+	 				if(temp != null)
+	 				{
+	 					pics[i] = temp;
+	 				}
+	 				else
+	 				{
+	 					pics[i] = BitmapFactory.decodeResource(getResources(), R.drawable.missing_image);
+	 				}
 	 				if(jsonObject.getString("description").length() < 100){
 	 					list[i] = jsonObject.getString("name") +":  "+ jsonObject.getString("description");
 	 				}

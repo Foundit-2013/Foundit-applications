@@ -31,10 +31,14 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class FoundItActivity extends Activity {
 	File f;
@@ -66,9 +70,38 @@ public class FoundItActivity extends Activity {
 	}
 	
 	public void uploadItem(View view){
-		
-		InfoTask info = new InfoTask();
-		info.execute();
+		//boolean cool = false;
+		String name = ((EditText)findViewById(R.id.nameField)).getText().toString();
+		String description = ((EditText)findViewById(R.id.descriptionField)).getText().toString();
+	
+		if(name.length() < 3)
+		{
+			Toast toast = Toast.makeText(FoundItActivity.this, "Length of the name must be greater than 3 characters", Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.CENTER, 0, 0);
+			TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+			v.setGravity(Gravity.CENTER);
+			toast.show();
+		}
+		else if(description.length() <10)
+		{
+			Toast toast = Toast.makeText(FoundItActivity.this, "Length of the description must be greater than 10 characters", Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.CENTER, 0, 0);
+			TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+			v.setGravity(Gravity.CENTER);
+			toast.show();
+		}
+		else if(tookPhoto == false){
+			Toast toast = Toast.makeText(FoundItActivity.this, "Please select an image to upload", Toast.LENGTH_LONG);
+			TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+			v.setGravity(Gravity.CENTER);
+			toast.setGravity(Gravity.CENTER, 0, 0);
+			toast.show();
+		}
+		else
+		{
+			InfoTask info = new InfoTask();
+			info.execute();
+		}
 	}
 	//called to launch camera application
 	public void uploadPhoto(View view){
@@ -113,7 +146,7 @@ public class FoundItActivity extends Activity {
 		    Bitmap compressedImage = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));*/
 		    System.out.println(compressedImage.getByteCount());
 			takenPhoto.setImageBitmap(compressedImage);
-	    }  
+	    } 
 	} 
 	
 private class InfoTask extends AsyncTask<Void, Void, String[]> {
@@ -136,7 +169,7 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
 	    	 		  }
 	    	 		});
 	    	 		AlertDialog alert = builder.create();
-	    	 		alert.show();
+	    	 		//alert.show();
 	    	 	}
 	    	 	else{	
 		    	 	if (uploadSuccessful){
@@ -207,6 +240,10 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
 		    
 		    return new String[1];
 		}
+	
 	 }
-
+public void closeKeyboard(View view){
+	 InputMethodManager inputMethodManager = (InputMethodManager)  this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+	    inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+}
 }
