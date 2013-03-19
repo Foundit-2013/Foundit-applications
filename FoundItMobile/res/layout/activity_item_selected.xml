@@ -18,14 +18,16 @@
 			
 	        <TextView
 		        android:id="@+id/itemState"
+		        android:background="@drawable/textbackground_itemselected"
 		        android:layout_width="fill_parent"
 		        android:layout_height="fill_parent"
-		        android:layout_marginBottom="2dp"
-		        android:layout_marginTop="2dp"
+		        android:layout_marginBottom="4dp"
+		        android:layout_marginTop="4dp"
+		        android:layout_marginLeft="35dp"
+		        android:layout_marginRight="35dp"
 		        android:gravity="center"
 		        android:typeface="serif"
 		        android:text="Lost"
-		        android:textStyle="italic"
 		        android:textColor="#000000"
 		        android:textSize="30sp"/>
 	        
@@ -38,9 +40,13 @@
 		    
 		    <TextView
 		        android:id="@+id/name"
+		        android:background="@drawable/textbackground_itemselected"
 		        android:layout_width="fill_parent"
 		        android:layout_height="fill_parent"
 		        android:layout_marginBottom="10dp"
+		        android:layout_marginLeft="35dp"
+		        android:layout_marginRight="35dp"
+		        android:layout_marginTop="4dp"
 		        android:gravity="center"
 		        android:textColor="#000000"
 		        android:textSize="20sp"/>
@@ -57,9 +63,11 @@
 		        android:id="@+id/text"
 		        android:layout_width="match_parent"
 		        android:layout_height="match_parent"
-		        android:layout_marginLeft="30dp"
-		        android:layout_marginRight="30dp"
-		        android:layout_marginBottom="10dp"
+		        android:layout_marginLeft="35dp"
+		        android:layout_marginRight="35dp"
+		        android:layout_marginBottom="4dp"
+		        android:layout_marginTop="4dp"
+		        android:background="@drawable/textbackground_itemselected"
 		        android:textColor="#000000"
 		        android:textSize="20sp"/>
 		        
@@ -75,8 +83,11 @@
 		        android:id="@+id/date"
 		        android:layout_width="match_parent"
 		        android:layout_height="match_parent"
-		        android:layout_marginLeft="30dp"
-		        android:layout_marginRight="30dp"
+		        android:layout_marginLeft="35dp"
+		        android:layout_marginRight="35dp"
+		        android:layout_marginBottom="4dp"
+		        android:layout_marginTop="4dp"
+		        android:background="@drawable/textbackground_itemselected"
 		        android:textColor="#000000"
 		        android:textSize="20sp"/>
         </LinearLayout>

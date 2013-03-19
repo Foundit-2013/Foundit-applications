@@ -36,6 +36,7 @@ public final class R {
         public static final int tab_selected_pressed_example=0x7f020010;
         public static final int tab_unselected_pressed_example=0x7f020011;
         public static final int textbackground=0x7f020012;
+        public static final int textbackground_itemselected=0x7f020013;
     }
     public static final class id {
         public static final int ScrlView=0x7f080002;
