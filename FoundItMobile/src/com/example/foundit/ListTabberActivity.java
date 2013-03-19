@@ -20,10 +20,12 @@ public class ListTabberActivity extends TabActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_tabber);
+	
 		ActionBar actionBar = getActionBar();
 		actionBar.setIcon(R.drawable.foundit_final_small);
 		actionBar.setTitle("");
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.rgb(117, 150, 194)));
+		
 		tabHost = getTabHost();
 		Intent tabSelected = getIntent();
 		int currentTab = tabSelected.getIntExtra("currentTab", 0);
@@ -32,7 +34,7 @@ public class ListTabberActivity extends TabActivity {
 	     // Tab Icon
 	     foundSpec.setIndicator(FOUND_SPEC, getResources().getDrawable(R.drawable.ic_launcher));
 	    
-		 Intent foundIntent = new Intent(this, AllListActivity.class);
+		 Intent foundIntent = new Intent(this, FoundListActivity.class);
 	        // Tab Content
 	     foundSpec.setContent(foundIntent);
 	     
@@ -65,13 +67,12 @@ public class ListTabberActivity extends TabActivity {
 		return true;
 	}
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-	    int currentTab = tabHost.getCurrentTab();
+		int currentTab = tabHost.getCurrentTab();
 		Intent refresh = new Intent(this, ListTabberActivity.class);
 		refresh.putExtra("currentTab", currentTab);
 	    startActivity(refresh);
 	    finish();
 	    return true;
-
-	}
-
+	    }
 }
+
