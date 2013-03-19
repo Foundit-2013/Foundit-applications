@@ -12,6 +12,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -24,6 +25,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -31,6 +33,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LostItActivity extends Activity {
 
@@ -62,9 +65,30 @@ public class LostItActivity extends Activity {
 	}
 	
 	public void uploadItem(View view){
-		
-		InfoTask info = new InfoTask();
-		info.execute();
+		String name = ((EditText)findViewById(R.id.nameField)).getText().toString();
+		String description = ((EditText)findViewById(R.id.descriptionField)).getText().toString();
+	
+		if(name.length() < 3)
+		{
+			Toast toast = Toast.makeText(LostItActivity.this, "Length of the name must be greater than 3 characters", Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.CENTER, 0, 0);
+			TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+			v.setGravity(Gravity.CENTER);
+			toast.show();
+		}
+		else if(description.length() <10)
+		{
+			Toast toast = Toast.makeText(LostItActivity.this, "Length of the description must be greater than 10 characters", Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.CENTER, 0, 0);
+			TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+			v.setGravity(Gravity.CENTER);
+			toast.show();
+		}
+		else
+		{
+			InfoTask info = new InfoTask();
+			info.execute();
+		}
 	}
 	//called to launch camera application
 	public void uploadPhoto(View view){

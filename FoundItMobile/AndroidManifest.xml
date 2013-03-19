@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.foundit.AllListActivity"
+            android:name="com.example.foundit.FoundListActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_list" >
         </activity>

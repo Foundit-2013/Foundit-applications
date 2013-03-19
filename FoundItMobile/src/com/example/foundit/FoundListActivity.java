@@ -44,7 +44,7 @@ import android.widget.ListView;
 //import org.json.simple.parser.ParseException;
 
 @SuppressLint("NewApi")
-public class AllListActivity extends ListActivity implements Parcelable {
+public class FoundListActivity extends ListActivity implements Parcelable {
 	private JSONArray lostItemsJSON;
 	Bitmap[] pics;
 	//@SuppressLint("NewApi")
@@ -102,7 +102,7 @@ public class AllListActivity extends ListActivity implements Parcelable {
 	    	 	progress.dismiss();
 	    	 	if(result == null)
 	    	 	{
-	    	 		AlertDialog.Builder builder = new AlertDialog.Builder(AllListActivity.this);
+	    	 		AlertDialog.Builder builder = new AlertDialog.Builder(FoundListActivity.this);
 	    	 		builder.setMessage("Your network is Broken :(");
 	    	 		builder.setCancelable(false);
 	    	 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -116,7 +116,7 @@ public class AllListActivity extends ListActivity implements Parcelable {
 	    	 	}
 	    	 	else{
 	    	 	String[] List = result;
-		    	setListAdapter(new FoundItArrayAdapter(AllListActivity.this,List, pics));
+		    	setListAdapter(new FoundItArrayAdapter(FoundListActivity.this,List, pics));
 		    	ListView listView = getListView();
 		    	
 				listView.setTextFilterEnabled(true);
@@ -124,7 +124,7 @@ public class AllListActivity extends ListActivity implements Parcelable {
          }
 	     @Override
          protected void onPreExecute() {
-	    	 progress = ProgressDialog.show(AllListActivity.this, "","Loading...");
+	    	 progress = ProgressDialog.show(FoundListActivity.this, "","Loading...");
          }
 		@Override
 		protected String[] doInBackground(Void... params) {

@@ -2,8 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ItemSelectedActivity"
-    android:background="@drawable/background4" >
+    android:background="@drawable/background"
+    tools:context=".ItemSelectedActivity" >
+
 	<ScrollView 
 	    android:id="@+id/ScrlView" 
 	    android:layout_width="fill_parent" 

@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FoundItActivity" 
-    android:background="@drawable/background4">
+    android:background="@drawable/background"
+    tools:context=".FoundItActivity" >
 
  /><ScrollView 
 	    android:id="@+id/ScrlView" 
