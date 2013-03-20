@@ -13,6 +13,9 @@ import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -210,9 +213,15 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
 			else
 				noNewLineDescription = description;
 			
-			HttpClient client = new DefaultHttpClient();
+			//two different timeouts 1 for the tsp connection, the other after if has been established and there is failure to deliver byte stream
+			final HttpParams httpParams = new BasicHttpParams();
+			HttpConnectionParams.setConnectionTimeout(httpParams, 5000);
+			HttpConnectionParams.setSoTimeout(httpParams, 15000);
+			
+			HttpClient client = new DefaultHttpClient(httpParams);
 		    HttpPost post = new HttpPost("http://foundit.andrewl.ca/postings");
-		    
+		   
+
 
 		    
 		    try {
@@ -224,6 +233,7 @@ private class InfoTask extends AsyncTask<Void, Void, String[]> {
 				  entity.addPart("posting[photo]", new FileBody(f));
 				  post.setEntity(entity);
 				  HttpResponse response = client.execute(post);
+				  int test = response.getStatusLine().getStatusCode();
 				     if (response.getStatusLine().getStatusCode()  == 200) {
 				    	  uploadSuccessful = true;
 				      }
